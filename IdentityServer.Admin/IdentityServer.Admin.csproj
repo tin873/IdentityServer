@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityServer.Admin.BusinessLogic.Identity\IdentityServer.Admin.BusinessLogic.Identity.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.BusinessLogic.Shared\IdentityServer.Admin.BusinessLogic.Shared.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.BusinessLogic\IdentityServer.Admin.BusinessLogic.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramewokr.SqlServer\IdentityServer.Admin.EntityFramework.SqlServer.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramework.MySql\IdentityServer.Admin.EntityFramework.MySql.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramework.PostgreSQL\IdentityServer.Admin.EntityFramework.PostgreSQL.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramework.Shared\IdentityServer.Admin.EntityFramework.Shared.csproj" />
+    <ProjectReference Include="..\IdentityServer.Shared\IdentityServer.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

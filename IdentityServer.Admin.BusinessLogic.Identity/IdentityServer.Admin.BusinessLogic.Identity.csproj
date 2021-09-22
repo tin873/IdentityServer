@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityServer.Admin.BusinessLogic.Shared\IdentityServer.Admin.BusinessLogic.Shared.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramework.Identity\IdentityServer.Admin.EntityFramework.Identity.csproj" />
+    <ProjectReference Include="..\IdentityServer.Admin.EntityFramework\IdentityServer.Admin.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>
