@@ -1,0 +1,9 @@
+﻿@using System.Reflection
+@using IdentityServer.Admin
+
+@{
+    var runtimeVersion = Assembly.GetExecutingAssembly()
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+}
+
+@runtimeVersion

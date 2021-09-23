@@ -1,59 +1,81 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Skoruba.AuditLogging.EntityFramework.Entities;
+using IdentityServer.Admin.Configuration.Database;
+using IdentityServer.Admin.EntityFramework.Shared.DbContexts;
+using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity;
+using IdentityServer.Shared.Configuration.Helpers;
+using IdentityServer.Shared.Dtos;
+using IdentityServer.Shared.Dtos.Identity;
 
 namespace IdentityServer.Admin
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            HostingEnvironment = env;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public IWebHostEnvironment HostingEnvironment { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adds the IdentityServer4 Admin UI with custom options.
+            services.AddIdentityServer4AdminUI<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext,
+            AdminLogDbContext, AdminAuditLogDbContext, AuditLog, IdentityServerDataProtectionDbContext,
+                User, Role, UserClaim, UserRole,
+                UserLogin, RoleClaim, UserToken, string,
+                IdentityUserDto, IdentityRoleDto, IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
+                IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
+                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(ConfigureUIOptions);
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            // Add email senders which is currently setup for SendGrid and SMTP
+            services.AddEmailSenders(Configuration);
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        {
+            app.UseRouting();
+
+            app.UseIdentityServer4AdminUI();
+
+            app.UseEndpoints(endpoint =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "IdentityServer.Admin", Version = "v1" });
+                endpoint.MapIdentityServer4AdminUI();
+                endpoint.MapIdentityServer4AdminUIHealthChecks();
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void ConfigureUIOptions(IdentityServer4AdminUIOptions options)
         {
-            if (env.IsDevelopment())
+            // Applies configuration from appsettings.
+            options.BindConfiguration(Configuration);
+            if (HostingEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IdentityServer.Admin v1"));
+                options.Security.UseDeveloperExceptionPage = true;
+            }
+            else
+            {
+                options.Security.UseHsts = true;
             }
 
-            app.UseHttpsRedirection();
+            // Set migration assembly for application of db migrations
+            var migrationsAssembly = MigrationAssemblyConfiguration.GetMigrationAssemblyByProvider(options.DatabaseProvider);
+            options.DatabaseMigrations.SetMigrationsAssemblies(migrationsAssembly);
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            // Use production DbContexts and auth services.
+            options.Testing.IsStaging = false;
         }
     }
 }
