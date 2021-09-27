@@ -1,8 +1,9 @@
-﻿using IdentityServer4.EntityFramework.Storage;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using IdentityServer4.EntityFramework.Storage;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -12,26 +13,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using Microsoft.Identity.Web;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.Configuration;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.MySql;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.PostgreSQL;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Configuration.SqlServer;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Helpers;
-using Skoruba.IdentityServer4.Admin.EntityFramework.Interfaces;
-using Skoruba.IdentityServer4.Shared.Configuration.Authentication;
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
-using Skoruba.IdentityServer4.STS.Identity.Configuration;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.ApplicationParts;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Constants;
-using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces;
-using Skoruba.IdentityServer4.STS.Identity.Helpers.Localization;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
+using IdentityServer.STS.Identity.Configuration;
+using IdentityServer.STS.Identity.Configuration.ApplicationParts;
+using IdentityServer.STS.Identity.Configuration.Constants;
+using IdentityServer.STS.Identity.Configuration.Interfaces;
+using IdentityServer.STS.Identity.Helpers.Localization;
 using System.Linq;
+using IdentityServer.Admin.EntityFramework.Interfaces;
+using IdentityServer.Admin.EntityFramework.Helpers;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Identity.Web;
+using IdentityServer.Admin.EntityFramework.Configuration.Configuration;
+using IdentityServer.Admin.EntityFramework.Configuration.MySql;
+using IdentityServer.Admin.EntityFramework.Configuration.PostgreSQL;
+using IdentityServer.Admin.EntityFramework.Configuration.SqlServer;
+using IdentityServer.Shared.Configuration.Authentication;
+using IdentityServer.Shared.Configuration.Configuration.Identity;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers
+namespace IdentityServer.STS.Identity.Helpers
 {
     public static class StartupHelpers
     {
@@ -333,7 +333,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                     options.Events.RaiseInformationEvents = true;
                     options.Events.RaiseFailureEvents = true;
                     options.Events.RaiseSuccessEvents = true;
-
+                    
                     if (!string.IsNullOrEmpty(advancedConfiguration.IssuerUri))
                     {
                         options.IssuerUri = advancedConfiguration.IssuerUri;

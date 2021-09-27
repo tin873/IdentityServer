@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Helpers
+﻿
+namespace IdentityServer.Admin.Api.Helpers
 {
     public static class UrlHelpers
     {

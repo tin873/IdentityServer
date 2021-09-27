@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using IdentityModel;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using IdentityServer.Admin.Api.Configuration.Constants;
 using IdentityServer.Admin.Api.Dtos.Roles;
 using IdentityServer.Admin.Api.Dtos.Users;
@@ -14,6 +8,12 @@ using IdentityServer.Admin.Api.Helpers.Localization;
 using IdentityServer.Admin.Api.Resources;
 using IdentityServer.Admin.BusinessLogic.Identity.Dtos.Identity;
 using IdentityServer.Admin.BusinessLogic.Identity.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IdentityServer.Admin.Api.Controllers
 {
@@ -88,7 +88,7 @@ namespace IdentityServer.Admin.Api.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<TUserDto>> Post([FromBody]TUserDto user)
+        public async Task<ActionResult<TUserDto>> Post([FromBody] TUserDto user)
         {
             if (!EqualityComparer<TKey>.Default.Equals(user.Id, default))
             {
@@ -102,7 +102,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody]TUserDto user)
+        public async Task<IActionResult> Put([FromBody] TUserDto user)
         {
             await _identityService.GetUserAsync(user.Id.ToString());
             await _identityService.UpdateUserAsync(user);
@@ -141,20 +141,20 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPost("Roles")]
-        public async Task<IActionResult> PostUserRoles([FromBody]UserRoleApiDto<TKey> role)
+        public async Task<IActionResult> PostUserRoles([FromBody] UserRoleApiDto<TKey> role)
         {
             var userRolesDto = _mapper.Map<TUserRolesDto>(role);
 
             await _identityService.GetUserAsync(userRolesDto.UserId.ToString());
             await _identityService.GetRoleAsync(userRolesDto.RoleId.ToString());
-            
+
             await _identityService.CreateUserRoleAsync(userRolesDto);
 
             return Ok();
         }
 
         [HttpDelete("Roles")]
-        public async Task<IActionResult> DeleteUserRoles([FromBody]UserRoleApiDto<TKey> role)
+        public async Task<IActionResult> DeleteUserRoles([FromBody] UserRoleApiDto<TKey> role)
         {
             var userRolesDto = _mapper.Map<TUserRolesDto>(role);
 
@@ -177,7 +177,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPost("Claims")]
-        public async Task<IActionResult> PostUserClaims([FromBody]UserClaimApiDto<TKey> claim)
+        public async Task<IActionResult> PostUserClaims([FromBody] UserClaimApiDto<TKey> claim)
         {
             var userClaimDto = _mapper.Map<TUserClaimsDto>(claim);
 
@@ -192,7 +192,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPut("Claims")]
-        public async Task<IActionResult> PutUserClaims([FromBody]UserClaimApiDto<TKey> claim)
+        public async Task<IActionResult> PutUserClaims([FromBody] UserClaimApiDto<TKey> claim)
         {
             var userClaimDto = _mapper.Map<TUserClaimsDto>(claim);
 
@@ -203,7 +203,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpDelete("{id}/Claims")]
-        public async Task<IActionResult> DeleteUserClaims([FromRoute]TKey id, int claimId)
+        public async Task<IActionResult> DeleteUserClaims([FromRoute] TKey id, int claimId)
         {
             var userClaimsDto = new TUserClaimsDto
             {
@@ -227,7 +227,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpDelete("Providers")]
-        public async Task<IActionResult> DeleteUserProviders([FromBody]UserProviderDeleteApiDto<TKey> provider)
+        public async Task<IActionResult> DeleteUserProviders([FromBody] UserProviderDeleteApiDto<TKey> provider)
         {
             var providerDto = _mapper.Map<TUserProviderDto>(provider);
 
@@ -238,7 +238,7 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPost("ChangePassword")]
-        public async Task<IActionResult> PostChangePassword([FromBody]UserChangePasswordApiDto<TKey> password)
+        public async Task<IActionResult> PostChangePassword([FromBody] UserChangePasswordApiDto<TKey> password)
         {
             var userChangePasswordDto = _mapper.Map<TUserChangePasswordDto>(password);
 
@@ -247,14 +247,14 @@ namespace IdentityServer.Admin.Api.Controllers
             return Ok();
         }
 
-		[HttpGet("{id}/RoleClaims")]
-		public async Task<ActionResult<RoleClaimsApiDto<TKey>>> GetRoleClaims(TKey id, string claimSearchText, int page = 1, int pageSize = 10)
-		{
-			var roleClaimsDto = await _identityService.GetUserRoleClaimsAsync(id.ToString(), claimSearchText, page, pageSize);
-			var roleClaimsApiDto = _mapper.Map<RoleClaimsApiDto<TKey>>(roleClaimsDto);
+        [HttpGet("{id}/RoleClaims")]
+        public async Task<ActionResult<RoleClaimsApiDto<TKey>>> GetRoleClaims(TKey id, string claimSearchText, int page = 1, int pageSize = 10)
+        {
+            var roleClaimsDto = await _identityService.GetUserRoleClaimsAsync(id.ToString(), claimSearchText, page, pageSize);
+            var roleClaimsApiDto = _mapper.Map<RoleClaimsApiDto<TKey>>(roleClaimsDto);
 
-			return Ok(roleClaimsApiDto);
-		}
+            return Ok(roleClaimsApiDto);
+        }
 
         [HttpGet("ClaimType/{claimType}/ClaimValue/{claimValue}")]
         public async Task<ActionResult<TUsersDto>> GetClaimUsers(string claimType, string claimValue, int page = 1, int pageSize = 10)

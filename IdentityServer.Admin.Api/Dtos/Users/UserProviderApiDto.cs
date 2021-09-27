@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Dtos.Users
+﻿
+namespace IdentityServer.Admin.Api.Dtos.Users
 {
     public class UserProviderApiDto<TKey>
     {

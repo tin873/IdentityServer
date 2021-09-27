@@ -4,12 +4,12 @@
 // https://github.com/aspnet/Extensions/blob/master/src/Localization/Abstractions/src/StringLocalizerOfT.cs
 // Modified by Jan Škoruba
 
-using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.Extensions.Localization;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers.Localization
+namespace IdentityServer.STS.Identity.Helpers.Localization
 {
     public class GenericControllerLocalizer<TResourceSource> : IGenericControllerLocalizer<TResourceSource>
     {

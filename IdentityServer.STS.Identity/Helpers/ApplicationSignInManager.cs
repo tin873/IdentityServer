@@ -15,7 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers
+namespace IdentityServer.STS.Identity.Helpers
 {
     public class ApplicationSignInManager<TUser> : SignInManager<TUser>
         where TUser : class

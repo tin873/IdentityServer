@@ -1,10 +1,10 @@
 
-using IdentityServer4.Models;
-using IdentityServer4.Validation;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.Models;
+using IdentityServer4.Validation;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers
+namespace IdentityServer.STS.Identity.Helpers
 {
     public class DelegationGrantValidator : IExtensionGrantValidator
     {

@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Dtos.IdentityResources
+﻿
+namespace IdentityServer.Admin.Api.Dtos.IdentityResources
 {
     public class IdentityResourcePropertyApiDto
     {

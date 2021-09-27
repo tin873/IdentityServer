@@ -4,14 +4,14 @@
 // Original file: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 // Modified by Jan Škoruba
 
+using System;
+using System.Threading.Tasks;
 using IdentityServer4.Models;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Mvc;
-using Skoruba.IdentityServer4.STS.Identity.ViewModels.Account;
-using System;
-using System.Threading.Tasks;
+using IdentityServer.STS.Identity.ViewModels.Account;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers
+namespace IdentityServer.STS.Identity.Helpers
 {
     public static class Extensions
     {

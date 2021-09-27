@@ -1,5 +1,4 @@
-﻿
-namespace Skoruba.IdentityServer4.STS.Identity.Helpers
+﻿namespace IdentityServer.STS.Identity.Helpers
 {
     public class OpenIdProfile
     {

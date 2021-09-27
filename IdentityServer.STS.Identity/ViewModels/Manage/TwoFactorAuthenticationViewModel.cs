@@ -1,5 +1,4 @@
-﻿
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Manage
+﻿namespace IdentityServer.STS.Identity.ViewModels.Manage
 {
     public class TwoFactorAuthenticationViewModel
     {

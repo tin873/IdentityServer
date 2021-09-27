@@ -1,6 +1,6 @@
+using IdentityServer.Admin.EntityFramework.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
-using IdentityServer.Admin.EntityFramework.Helpers;
 
 namespace IdentityServer.Admin.Api.Dtos.Clients
 {

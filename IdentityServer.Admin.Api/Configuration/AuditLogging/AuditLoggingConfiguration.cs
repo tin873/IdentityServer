@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Configuration
+﻿
+namespace IdentityServer.Admin.Api.Configuration
 {
     public class AuditLoggingConfiguration
     {

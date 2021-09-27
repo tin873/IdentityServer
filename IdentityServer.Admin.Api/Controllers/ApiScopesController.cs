@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using IdentityServer.Admin.Api.Configuration.Constants;
+﻿using IdentityServer.Admin.Api.Configuration.Constants;
 using IdentityServer.Admin.Api.Dtos.ApiScopes;
 using IdentityServer.Admin.Api.ExceptionHandling;
 using IdentityServer.Admin.Api.Mappers;
 using IdentityServer.Admin.Api.Resources;
 using IdentityServer.Admin.BusinessLogic.Dtos.Configuration;
 using IdentityServer.Admin.BusinessLogic.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace IdentityServer.Admin.Api.Controllers
 {
@@ -57,10 +57,10 @@ namespace IdentityServer.Admin.Api.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> PostScope([FromBody]ApiScopeApiDto apiScopeApi)
+        public async Task<IActionResult> PostScope([FromBody] ApiScopeApiDto apiScopeApi)
         {
             var apiScope = apiScopeApi.ToApiScopeApiModel<ApiScopeDto>();
-            
+
             if (!apiScope.Id.Equals(default))
             {
                 return BadRequest(_errorResources.CannotSetId());
@@ -69,13 +69,13 @@ namespace IdentityServer.Admin.Api.Controllers
             var id = await _apiScopeService.AddApiScopeAsync(apiScope);
             apiScope.Id = id;
 
-            return CreatedAtAction(nameof(GetScope), new {scopeId = id}, apiScope);
+            return CreatedAtAction(nameof(GetScope), new { scopeId = id }, apiScope);
         }
 
         [HttpPost("{id}/Properties")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> PostProperty(int id, [FromBody]ApiScopePropertyApiDto apiScopePropertyApi)
+        public async Task<IActionResult> PostProperty(int id, [FromBody] ApiScopePropertyApiDto apiScopePropertyApi)
         {
             var apiResourcePropertiesDto = apiScopePropertyApi.ToApiScopeApiModel<ApiScopePropertiesDto>();
             apiResourcePropertiesDto.ApiScopeId = id;
@@ -112,10 +112,10 @@ namespace IdentityServer.Admin.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutScope([FromBody]ApiScopeApiDto apiScopeApi)
+        public async Task<IActionResult> PutScope([FromBody] ApiScopeApiDto apiScopeApi)
         {
             var apiScope = apiScopeApi.ToApiScopeApiModel<ApiScopeDto>();
-            
+
             await _apiScopeService.GetApiScopeAsync(apiScope.Id);
 
             await _apiScopeService.UpdateApiScopeAsync(apiScope);

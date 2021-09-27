@@ -4,12 +4,12 @@
 // Original file: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 // Modified by Jan Škoruba
 
-using Skoruba.IdentityServer4.Shared.Configuration.Configuration.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using IdentityServer.Shared.Configuration.Configuration.Identity;
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Account
+namespace IdentityServer.STS.Identity.ViewModels.Account
 {
     public class LoginViewModel : LoginInputModel
     {

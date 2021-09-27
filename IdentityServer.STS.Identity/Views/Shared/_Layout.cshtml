@@ -1,8 +1,8 @@
 ﻿@using IdentityServer4.Extensions
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.Localization
-@using Skoruba.IdentityServer4.Admin.EntityFramework.Shared.Entities.Identity
-@using Skoruba.IdentityServer4.STS.Identity.Configuration.Interfaces
+@using IdentityServer.Admin.EntityFramework.Shared.Entities.Identity
+@using IdentityServer.STS.Identity.Configuration.Interfaces
 @inject IRootConfiguration RootConfiguration
 @inject IViewLocalizer Localizer
 @{
@@ -13,7 +13,7 @@
     }
 }
 
-@inject SignInManager<UserIdentity> SignInManager
+@inject SignInManager<User> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

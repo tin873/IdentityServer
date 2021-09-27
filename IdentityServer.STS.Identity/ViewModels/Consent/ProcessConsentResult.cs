@@ -6,7 +6,7 @@
 
 using IdentityServer4.Models;
 
-namespace Skoruba.IdentityServer4.STS.Identity.ViewModels.Consent
+namespace IdentityServer.STS.Identity.ViewModels.Consent
 {
     public class ProcessConsentResult
     {

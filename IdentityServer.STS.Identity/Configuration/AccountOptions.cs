@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration
+namespace IdentityServer.STS.Identity.Configuration
 {
     public class AccountOptions
     {

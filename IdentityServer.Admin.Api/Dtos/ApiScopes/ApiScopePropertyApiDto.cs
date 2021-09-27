@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Dtos.ApiScopes
+﻿
+namespace IdentityServer.Admin.Api.Dtos.ApiScopes
 {
     public class ApiScopePropertyApiDto
     {

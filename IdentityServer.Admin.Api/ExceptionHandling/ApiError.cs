@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.ExceptionHandling
+﻿
+namespace IdentityServer.Admin.Api.ExceptionHandling
 {
     public class ApiError
     {

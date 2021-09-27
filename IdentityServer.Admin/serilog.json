@@ -19,14 +19,14 @@
             },
             {
                 "Name": "MSSqlServer",
-              "Args": {
-                "connectionString": "Data Source=DESKTOP-BSOQIG7\\SQLEXPRESS;Initial Catalog=AuthenticationDb; Integrated Security=true; MultipleActiveResultSets=True",
-                "tableName": "Log",
-                "columnOptionsSection": {
-                  "addStandardColumns": [ "LogEvent" ],
-                  "removeStandardColumns": [ "Properties" ]
+                "Args": {
+                    "connectionString": "Server=(localdb)\\mssqllocaldb;Database=IdentityServer4Admin;Trusted_Connection=True;MultipleActiveResultSets=true",
+                    "tableName": "Log",
+                    "columnOptionsSection": {
+                        "addStandardColumns": [ "LogEvent" ],
+                        "removeStandardColumns": [ "Properties" ]
+                    }
                 }
-              }
             }
         ]
     }

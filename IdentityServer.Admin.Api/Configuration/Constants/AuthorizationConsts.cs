@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Configuration.Constants
+﻿
+namespace IdentityServer.Admin.Api.Configuration.Constants
 {
     public class AuthorizationConsts
     {

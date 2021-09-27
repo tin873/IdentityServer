@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using IdentityServer.Admin.Api.Configuration;
 using Microsoft.AspNetCore.Http;
 using Skoruba.AuditLogging.Constants;
 using Skoruba.AuditLogging.Events;
-using IdentityServer.Admin.Api.Configuration;
+using System.Linq;
 
 namespace IdentityServer.Admin.Api.AuditLogging
 {

@@ -1,4 +1,5 @@
-﻿namespace IdentityServer.Admin.Api.Dtos.Clients
+﻿
+namespace IdentityServer.Admin.Api.Dtos.Clients
 {
     public class ClientPropertyApiDto
     {

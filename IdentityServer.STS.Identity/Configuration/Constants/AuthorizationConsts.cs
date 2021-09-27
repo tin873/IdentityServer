@@ -1,5 +1,4 @@
-﻿
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Constants
+﻿namespace IdentityServer.STS.Identity.Configuration.Constants
 {
     public class AuthorizationConsts
     {

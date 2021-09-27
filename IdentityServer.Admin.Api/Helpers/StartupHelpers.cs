@@ -1,5 +1,16 @@
-﻿using System;
-using IdentityModel;
+﻿using IdentityModel;
+using IdentityServer.Admin.Api.AuditLogging;
+using IdentityServer.Admin.Api.Configuration;
+using IdentityServer.Admin.Api.Configuration.ApplicationParts;
+using IdentityServer.Admin.Api.Configuration.Constants;
+using IdentityServer.Admin.Api.Helpers.Localization;
+using IdentityServer.Admin.BusinessLogic.Identity.Dtos.Identity;
+using IdentityServer.Admin.EntityFramework.Configuration.Configuration;
+using IdentityServer.Admin.EntityFramework.Configuration.MySql;
+using IdentityServer.Admin.EntityFramework.Configuration.PostgreSQL;
+using IdentityServer.Admin.EntityFramework.Configuration.SqlServer;
+using IdentityServer.Admin.EntityFramework.Helpers;
+using IdentityServer.Admin.EntityFramework.Interfaces;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -15,18 +26,7 @@ using Skoruba.AuditLogging.EntityFramework.Entities;
 using Skoruba.AuditLogging.EntityFramework.Extensions;
 using Skoruba.AuditLogging.EntityFramework.Repositories;
 using Skoruba.AuditLogging.EntityFramework.Services;
-using IdentityServer.Admin.Api.AuditLogging;
-using IdentityServer.Admin.Api.Configuration;
-using IdentityServer.Admin.Api.Configuration.ApplicationParts;
-using IdentityServer.Admin.Api.Configuration.Constants;
-using IdentityServer.Admin.Api.Helpers.Localization;
-using IdentityServer.Admin.BusinessLogic.Identity.Dtos.Identity;
-using IdentityServer.Admin.EntityFramework.Configuration.Configuration;
-using IdentityServer.Admin.EntityFramework.Configuration.MySql;
-using IdentityServer.Admin.EntityFramework.Configuration.PostgreSQL;
-using IdentityServer.Admin.EntityFramework.Configuration.SqlServer;
-using IdentityServer.Admin.EntityFramework.Helpers;
-using IdentityServer.Admin.EntityFramework.Interfaces;
+using System;
 
 namespace IdentityServer.Admin.Api.Helpers
 {

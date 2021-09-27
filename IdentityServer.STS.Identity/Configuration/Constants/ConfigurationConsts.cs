@@ -1,10 +1,9 @@
-﻿
-namespace Skoruba.IdentityServer4.STS.Identity.Configuration.Constants
+﻿namespace IdentityServer.STS.Identity.Configuration.Constants
 {
     public class ConfigurationConsts
     {
         public const string AdminConnectionStringKey = "AdminConnection";
-
+        
         public const string ConfigurationDbConnectionStringKey = "ConfigurationDbConnection";
 
         public const string PersistedGrantDbConnectionStringKey = "PersistedGrantDbConnection";
